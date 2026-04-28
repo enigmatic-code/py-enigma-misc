@@ -30,11 +30,9 @@ for a in angles:
   (x, y) = (R * cos(r), R * sin(r))
   pts.append((x, y))
 
-vs = []
-if 1:
-  # determine tangent lines at the vertices
-  pbs = list(line_bisect((0, 0), line_param((0, 0), p1)(2)) for p1 in pts)
-  vs = list(line_intersect(p1, p2, p3, p4).pt for ((p1, p2), (p3, p4)) in tuples(pbs, 2))
+# determine tangent lines at the vertices
+pbs = list(line_bisect((0, 0), line_param((0, 0), p1)(2)) for p1 in pts)
+vs = list(line_intersect(p1, p2, p3, p4).pt for ((p1, p2), (p3, p4)) in tuples(pbs, 2))
 
 def output_sides(pts, t=''):
   # output side lengths
