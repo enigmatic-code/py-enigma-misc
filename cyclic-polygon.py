@@ -47,27 +47,23 @@ def output_sides(pts, t=''):
 
 p = Plot(width=600, height=600, xscale=256.0, yscale=256.0, xoffset=1.125, yoffset=1.09375)
 
-if 1:
-  # plot the inner (contact) polygon
-  # this is a cyclic polygon inscribed in a circle
-  p.line(flatten(pts), colour="black")
-  output_sides(pts, "inner")
+# plot the inner (contact) polygon [tag = 2]
+# this is a cyclic polygon inscribed in a circle
+p.line(flatten(pts), colour="black", tag=2)
+output_sides(pts, "inner")
 
-if 1:
-  # the outer polygon
-  # this is a tangential polygon with the circle inscribed in it
-  if vs:
-    vs.append(vs[0])
-    p.line(flatten(vs), colour="red")
-    output_sides(vs, "outer")
+# the outer polygon [tag = 3]
+# this is a tangential polygon with the circle inscribed in it
+if vs:
+  vs.append(vs[0])
+  p.line(flatten(vs), colour="red", tag=3)
+  output_sides(vs, "outer")
 
-# the circle (= incircle of the outer polygon; = circumcircle of inner polygon)
-if 1:
-  p.circle((0, 0), R, fill=None, width=1)
+# the circle (= incircle of the outer polygon; = circumcircle of inner polygon) [tag = 1]
+p.circle((0, 0), R, fill=None, width=1, tag=1)
 
-# points (inner polygon and circumcentre)
-if 1:
-  for pt in pts + [(0, 0)]:
-    p.circle(pt, 0.01, fill="black")
+# points (inner polygon and circumcentre) [tag = 4]
+for pt in pts + [(0, 0)]:
+  p.circle(pt, 0.01, fill="black", tag=4)
 
 p.display()
