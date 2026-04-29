@@ -40,7 +40,9 @@ def output_sides(pts, t=''):
   delta = sum(a - b for (a, b) in chunk(ds, 2, pad=1, value=0))
   # delta = 0 => the quad is tangential (i.e. has an incircle)
   if t: t += ' '
-  msg = ("[0 <-> tangential]" if len(ds) == 4 else "[0 <- tangential]")
+  msg = ""
+  if len(ds) % 2 == 0:
+    msg = ("[0 <-> tangential]" if len(ds) == 4 else "[0 <- tangential]")
   printf("{t}sides = {ds}; delta = {delta:.4f} {msg}", ds=fmt(ds, ".4f"))
 
 p = Plot(width=600, height=600, xscale=256.0, yscale=256.0, xoffset=1.125, yoffset=1.09375)
